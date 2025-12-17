@@ -1,6 +1,6 @@
 # Abstract
 
-Link prediction is investigated in venture capital co-investment networks to evaluate whether future VC pair syndications can be inferred from historical funding rounds. A co-investor graph is built from 2,044 funding rounds (2021–2024) involving 5,152 unique investors, and a strict temporal split is adopted (train: 2021–2023, test: 2024). Classic graph heuristics: Common Neighbors (CN), Jaccard, Preferential Attachment (PA), are compared against machine learning models (Logistic Regression, Random Forest) and a simple voting ensemble. Evaluation relies on Precision@k and PR-AUC, with hard negative sampling that matches the degree distribution of positive examples. Simple heuristics outperform ML models: CN attains the best PR-AUC (0.535) and high Precision@100 (0.98), while PA reaches a Precision@100 of 1.00 with PR-AUC 0.503; Logistic Regression and Random Forest achieve PR-AUC of 0.409 and 0.395 respectively. All methods substantially exceed a random baseline (PR-AUC 0.17), confirming that local neighborhood structure is the dominant predictive signal in VC syndication. The main contribution is a fully reproducible pipeline—covering data cleaning, temporal splitting, graph construction, feature computation, realistic negative sampling, and standardized metrics—that provides a transparent benchmark for co-investment prediction and a solid foundation for future extensions.
+Link prediction is investigated in venture capital co-investment networks to evaluate whether future VC pair syndications can be inferred from historical funding rounds. A co-investor graph is built from 2,044 funding rounds (2021–2024) involving 5,152 unique investors, and a strict temporal split is adopted (train: 2021–2023, test: 2024). Classic graph heuristics: Common Neighbors (CN), Jaccard, Preferential Attachment (PA), are compared against machine learning models (Logistic Regression, Random Forest) and a simple voting ensemble. Evaluation relies on Precision@k and PR-AUC, with hard negative sampling that matches the degree distribution of positive examples. Simple heuristics outperform ML models: CN attains the best PR-AUC (0.542) and high Precision@100 (0.99), while PA reaches a Precision@100 of 0.99 with PR-AUC 0.514; Logistic Regression and Random Forest achieve PR-AUC of 0.414 and 0.404 respectively. All methods substantially exceed a random baseline (PR-AUC 0.17), confirming that local neighborhood structure is the dominant predictive signal in VC syndication. The main contribution is a fully reproducible pipeline—covering data cleaning, temporal splitting, graph construction, feature computation, realistic negative sampling, and standardized metrics—that provides a transparent benchmark for co-investment prediction and a solid foundation for future extensions.
 
 
 # 1. Introduction
@@ -267,20 +267,20 @@ Overall Performance Comparison: table 8 presents the main experimental results, 
 ```
 | Method                  | P@50  | P@100 |   PR-AUC  |
 |-------------------------|------ |-------|-----------|
-| Common Neighbors        | 1.000 | 0.980 | **0.535** |
-| Preferential Attachment | 1.000 | 1.000 |   0.503   |
-| Voting Ensemble         | 0.860 | 0.780 |   0.463   |
-| Logistic Regression     | 0.800 | 0.770 |   0.409   |
-| Random Forest           | 0.620 | 0.690 |   0.395   |
-| Jaccard Coefficient     | 0.560 | 0.590 |   0.385   |
+| Common Neighbors        | 1.000 | 0.990 | **0.542** |
+| Preferential Attachment | 1.000 | 0.990 |   0.514   |
+| Voting Ensemble         | 0.900 | 0.830 |   0.469   |
+| Logistic Regression     | 0.840 | 0.810 |   0.414   |
+| Random Forest           | 0.820 | 0.760 |   0.404   |
+| Jaccard Coefficient     | 0.560 | 0.570 |   0.386   |
 | Random Baseline         | 0.240 | 0.200 |   0.170   |
 
 ```
 
 Several key observations emerge from these results:
-- Graph heuristics outperform ML models: Common Neighbors achieves the highest PR-AUC (0.535), surpassing both Logistic Regression (0.409) and Random Forest (0.395) by substantial margins of 30.8% and 35.4%, respectively. This finding aligns with established literature on link prediction, where simple topological measures often match or exceed the performance of more complex approaches;
+- Graph heuristics outperform ML models: Common Neighbors achieves the highest PR-AUC (0.542), surpassing both Logistic Regression (0.414) and Random Forest (0.404) by substantial margins of 30.9% and 34.2%, respectively. This finding aligns with established literature on link prediction, where simple topological measures often match or exceed the performance of more complex approaches;
 - All methods exceed random baseline: Every evaluated method demonstrates meaningful predictive power, with PR-AUC values ranging from 2.3× to 3.1× the random baseline (0.170). This confirms that the co-investment network structure contains exploitable signals for predicting future collaborations;
-- High precision at top ranks: Preferential Attachment achieves perfect Precision@100 (1.000), indicating that all top-100 predictions are true positives. Common Neighbors similarly achieves near-perfect precision (0.980). These results suggest that the models are highly reliable for identifying the most likely co-investment pairs;
+- High precision at top ranks: Preferential Attachment achieves near-perfect Precision@100 (0.990), indicating that all top-100 predictions are true positives. Common Neighbors similarly achieves near-perfect precision (0.990). These results suggest that the models are highly reliable for identifying the most likely co-investment pairs;
 - Voting ensemble provides partial improvement: The ensemble approach (PR-AUC = 0.463) outperforms individual ML models but fails to surpass simple heuristics. This suggests that combining heterogeneous predictors through weighted averaging does not effectively leverage complementary information when the base signals are highly correlated.
 
 Improvement Over Baseline: to quantify the practical value of each method, Table 9 reports the relative improvement factor over the random baseline.
@@ -289,17 +289,17 @@ Improvement Over Baseline: to quantify the practical value of each method, Table
 ```
 | Method                  | PR-AUC | Improvement Factor |
 |-------------------------|--------|--------------------|
-| Common Neighbors        | 0.535  |       3.15×        |
-| Preferential Attachment | 0.503  |       2.96×        |
-| Voting Ensemble         | 0.463  |       2.72×        |
-| Logistic Regression     | 0.409  |       2.41×        |
-| Random Forest           | 0.395  |       2.32×        |
-| Jaccard Coefficient     | 0.385  |       2.26×        |
+| Common Neighbors        | 0.542  |       3.19×        |
+| Preferential Attachment | 0.514  |       3.02×        |
+| Voting Ensemble         | 0.469  |       2.76×        |
+| Logistic Regression     | 0.414  |       2.44×        |
+| Random Forest           | 0.404  |       2.38×        |
+| Jaccard Coefficient     | 0.386  |       2.27×        |
 | Random Baseline         | 0.170  |       1.00×        |
 
 ```
 
-Common Neighbors provides the largest improvement (3.15×), followed closely by Preferential Attachment (2.96×). Even the worst-performing non-random method (Jaccard Coefficient) achieves a 2.26× improvement, demonstrating that all evaluated approaches capture meaningful predictive signal.
+Common Neighbors provides the largest improvement (3.19×), followed closely by Preferential Attachment (3.02×). Even the worst-performing non-random method (Jaccard Coefficient) achieves a 2.27× improvement, demonstrating that all evaluated approaches capture meaningful predictive signal.
 
 Feature Importance Analysis: to assess the relative contribution of input features to ML model predictions, feature importance scores extracted from the Random Forest classifier are analyzed. Table 10 reports these results, ranked by importance.
 **Table 10: Random Forest Feature Importance**
@@ -307,11 +307,11 @@ Feature Importance Analysis: to assess the relative contribution of input featur
 ```
 | Feature                 | Importance | Rank |
 |-------------------------|------------|------|
-| Jaccard Coefficient     |    0.510   |   1  |
-| Common Neighbors        |    0.374   |   2  |
-| Degree Difference       |    0.051   |   3  |
-| Preferential Attachment |    0.046   |   4  |
-| Degree Sum              |    0.019   |   5  |
+| Jaccard Coefficient     |    0.516   |   1  |
+| Common Neighbors        |    0.371   |   2  |
+| Degree Difference       |    0.049   |   3  |
+| Preferential Attachment |    0.045   |   4  |
+| Degree Sum              |    0.018   |   5  |
 
 ```
 
@@ -361,7 +361,7 @@ Notably, several predictions involve pairs of investors that already operate in 
 This section presents visual representations of the experimental results to facilitate interpretation and comparison across methods.
 Performance Metrics Heatmap: Figure 1 provides a comprehensive overview of all evaluation metrics across methods through a heatmap visualization. The color intensity corresponds to metric values, with darker shades indicating higher performance.
 
-![Figure 1: Metrics Heatmap](metrics_heatmap.png)
+![Figure 1: Metrics Heatmap](results/metrics_heatmap.png)
 
 *Figure 1: Heatmap visualization of performance metrics (P@50, P@100, PR-AUC) across all evaluated methods. Rows are ordered by PR-AUC performance. Common Neighbors and Preferential Attachment exhibit the darkest coloration, indicating superior performance across all metrics. The Random Baseline shows distinctly lighter coloration, confirming its role as a lower bound.*
 
@@ -369,19 +369,19 @@ The heatmap reveals a clear performance hierarchy. Graph-based heuristics (Commo
 
 PR-AUC Comparison: Figure 2 presents a bar chart comparing PR-AUC scores across all methods, providing a direct visualization of overall predictive performance.
 
-![Figure 2: PR-AUC Comparison](pr_auc.png)
+![Figure 2: PR-AUC Comparison](results/pr_auc.png)
 
-*Figure 2: PR-AUC scores by method, sorted in descending order. Common Neighbors achieves the highest score (0.535), followed by Preferential Attachment (0.503). All methods substantially exceed the Random Baseline (0.170), demonstrating meaningful predictive power. The gap between graph heuristics and ML models is clearly visible.*
+*Figure 2: PR-AUC scores by method, sorted in descending order. Common Neighbors achieves the highest score (0.542), followed by Preferential Attachment (0.514). All methods substantially exceed the Random Baseline (0.170), demonstrating meaningful predictive power. The gap between graph heuristics and ML models is clearly visible.*
 
-The visualization emphasizes the performance gap between simple heuristics and machine learning approaches. Common Neighbors exceeds Random Forest by approximately 0.14 points in absolute terms, representing a 35% relative improvement. The Random Baseline's substantially lower bar confirms that the observed performance reflects genuine predictive signal rather than artifacts of the evaluation protocol.
+The visualization emphasizes the performance gap between simple heuristics and machine learning approaches. Common Neighbors exceeds Random Forest by approximately 0.14 points in absolute terms, representing a 34% relative improvement. The Random Baseline's substantially lower bar confirms that the observed performance reflects genuine predictive signal rather than artifacts of the evaluation protocol.
 
 Precision@100 Comparison: Figure 3 displays Precision@100 scores, measuring the accuracy of top-ranked predictions.
 
-![Figure 3: Precision@100 Comparison](precision_at_100.png)
+![Figure 3: Precision@100 Comparison](results/precision_at_100.png)
 
-*Figure 3: Precision@100 scores by method. Preferential Attachment achieves perfect precision (1.000), indicating that all top-100 predictions are true positives. Common Neighbors follows closely (0.980). The sharp drop-off for Random Baseline (0.200) confirms that high precision requires meaningful predictive signal rather than random ranking.*
+*Figure 3: Precision@100 scores by method. Preferential Attachment achieves near-perfect precision (0.990), indicating that all top-100 predictions are true positives. Common Neighbors match this (0.990). The sharp drop-off for Random Baseline (0.200) confirms that high precision requires meaningful predictive signal rather than random ranking.*
 
-The figure highlights the practical utility of topological heuristics for recommendation scenarios where only top-ranked predictions are considered. Preferential Attachment's perfect precision suggests that degree-based signals are particularly effective for identifying high-confidence predictions, even if overall ranking quality (as measured by PR-AUC) is slightly lower than Common Neighbors.
+The figure highlights the practical utility of topological heuristics for recommendation scenarios where only top-ranked predictions are considered. Preferential Attachment's near-perfect precision suggests that degree-based signals are particularly effective for identifying high-confidence predictions, even if overall ranking quality (as measured by PR-AUC) is slightly lower than Common Neighbors.
 
 Summary of Visual Findings: the visualizations collectively support three main conclusions:
 - Consistent heuristic superiority: Across all visual representations, Common Neighbors and Preferential Attachment consistently occupy the top performance positions;
@@ -394,7 +394,7 @@ Summary of Visual Findings: the visualizations collectively support three main c
 Several aspects of the approach proved particularly effective in addressing the co-investment prediction task:
 - Temporal train-test splitting provides a realistic evaluation framework that respects the chronological nature of investment data. Training on 2021–2023 and testing on 2024 simulates a genuine prediction scenario where only historical information is available at decision time. This design avoids the data leakage that can result from random edge splitting, yielding performance estimates that better reflect real-world applicability;
 - Hard negative sampling enhances evaluation rigor by selecting negative test samples from node pairs with degree distributions similar to positive edges. This choice prevents artificial inflation of performance metrics that can occur when models trivially distinguish high-degree positive pairs from low-degree random negatives. The resulting PR-AUC values (0.38–0.54) represent realistic estimates of predictive performance under challenging conditions;
-- Graph-based heuristics demonstrate strong effectiveness despite their simplicity. Common Neighbors achieves the highest PR-AUC (0.535) with minimal computational overhead and full interpretability. These results support the insight that local network structure—specifically shared connections between investors—strongly predicts future collaboration. The finding also has practical implications: simple neighbor-counting algorithms can be used to identify co-investment opportunities without requiring complex machine learning infrastructure;
+- Graph-based heuristics demonstrate strong effectiveness despite their simplicity. Common Neighbors achieves the highest PR-AUC (0.542) with minimal computational overhead and full interpretability. These results support the insight that local network structure—specifically shared connections between investors—strongly predicts future collaboration. The finding also has practical implications: simple neighbor-counting algorithms can be used to identify co-investment opportunities without requiring complex machine learning infrastructure;
 - A modular code architecture facilitates systematic experimentation and supports reproducibility. Separating data loading, model training, and evaluation into distinct modules enables independent testing and straightforward extension to additional methods or datasets.
 
 5.2 Challenges Encountered
@@ -407,11 +407,11 @@ The development process presented several technical and methodological challenge
 5.3 Comparison with Expectations
 The initial hypotheses and their outcomes are summarized below:
 - Hypothesis 1: Machine learning models combining multiple features will outperform individual heuristics.
-Outcome: Rejected. Contrary to expectations, both Logistic Regression (PR-AUC = 0.409) and Random Forest (PR-AUC = 0.395) perform worse than Common Neighbors (0.535) and Preferential Attachment (0.503). This result, while surprising, is consistent with findings in the broader link prediction literature. Liben-Nowell and Kleinberg (2007) observed similar patterns in co-authorship networks, where simple topological measures often matched or exceeded complex alternatives. A likely explanation lies in the nature of the feature set: when ML models rely primarily on the same heuristic signals they are intended to improve upon, limited additional structure can be discovered beyond what those heuristics already capture.
+Outcome: Rejected. Contrary to expectations, both Logistic Regression (PR-AUC = 0.414) and Random Forest (PR-AUC = 0.404) perform worse than Common Neighbors (0.542) and Preferential Attachment (0.514). This result, while surprising, is consistent with findings in the broader link prediction literature. Liben-Nowell and Kleinberg (2007) observed similar patterns in co-authorship networks, where simple topological measures often matched or exceeded complex alternatives. A likely explanation lies in the nature of the feature set: when ML models rely primarily on the same heuristic signals they are intended to improve upon, limited additional structure can be discovered beyond what those heuristics already capture.
 - Hypothesis 2: Ensemble methods will provide performance gains through predictor combination.
-Outcome: Partially supported. The Voting Ensemble (PR-AUC = 0.463) outperforms individual ML models (LR: 0.409, RF: 0.395) but does not exceed the best heuristics. This suggests that combining correlated predictors through simple averaging provides limited benefit when the base signals lack complementary information.
+Outcome: Partially supported. The Voting Ensemble (PR-AUC = 0.469) outperforms individual ML models (LR: 0.414, RF: 0.404) but does not exceed the best heuristics. This suggests that combining correlated predictors through simple averaging provides limited benefit when the base signals lack complementary information.
 - Hypothesis 3: The co-investment network contains exploitable structure for link prediction.
-Outcome: Confirmed. All evaluated methods substantially exceed the random baseline (PR-AUC = 0.170), with improvement factors ranging from 2.26× to 3.15×. This indicates that the network topology encodes meaningful signals about future co-investment relationships.
+Outcome: Confirmed. All evaluated methods substantially exceed the random baseline (PR-AUC = 0.170), with improvement factors ranging from 2.27× to 3.19×. This indicates that the network topology encodes meaningful signals about future co-investment relationships.
 - Hypothesis 4: High-degree investors will be easier to predict than low-degree investors.
 Outcome: Confirmed. Test edge difficulty analysis shows that 58.8% of test edges involve “Easy” pairs (both nodes with degree > 10), and these edges contribute disproportionately to high Precision@k values. Predictions for well-connected investors benefit from richer neighborhood information, enabling more accurate Common Neighbors estimates.
 
@@ -426,9 +426,9 @@ Several limitations constrain the generalizability and interpretation of the fin
 
 5.5 Surprising Findings
 Various unexpected results emerged from the analysis:
-- The magnitude of heuristic superiority exceeds expectations. While the link prediction literature documents cases where simple methods match complex alternatives, ML models with access to multiple features were expected to achieve at least comparable performance. The 35% performance gap between Common Neighbors and Random Forest (0.535 vs. 0.395) suggests that additional model complexity introduces noise rather than capturing useful patterns;
-- Preferential Attachment achieves perfect Precision@100 despite having lower PR-AUC than Common Neighbors. This dissociation between top-k precision and overall ranking quality indicates that degree-based signals are particularly effective for high-confidence predictions, even if they provide less discriminative rankings in the middle of the score distribution. For practical applications focused on identifying the most promising co-investment opportunities, Preferential Attachment may therefore be preferable despite its lower aggregate performance;
-- Jaccard Coefficient underperforms relative to raw Common Neighbors (PR-AUC 0.385 vs. 0.535), despite being the most important feature in the Random Forest model (51% importance). This suggests that while Jaccard provides useful information when combined with other features, its normalization by neighborhood size may be counterproductive as a standalone predictor in this domain. In VC networks, absolute counts of shared connections may be more predictive than normalized overlap ratios;
+- The magnitude of heuristic superiority exceeds expectations. While the link prediction literature documents cases where simple methods match complex alternatives, ML models with access to multiple features were expected to achieve at least comparable performance. The 34% performance gap between Common Neighbors and Random Forest (0.542 vs. 0.404) suggests that additional model complexity introduces noise rather than capturing useful patterns;
+- Preferential Attachment achieves near-perfect Precision@100 despite having lower PR-AUC than Common Neighbors. This dissociation between top-k precision and overall ranking quality indicates that degree-based signals are particularly effective for high-confidence predictions, even if they provide less discriminative rankings in the middle of the score distribution. For practical applications focused on identifying the most promising co-investment opportunities, Preferential Attachment may therefore be preferable despite its lower aggregate performance;
+- Jaccard Coefficient underperforms relative to raw Common Neighbors (PR-AUC 0.386 vs. 0.542), despite being the most important feature in the Random Forest model (51% importance). This suggests that while Jaccard provides useful information when combined with other features, its normalization by neighborhood size may be counterproductive as a standalone predictor in this domain. In VC networks, absolute counts of shared connections may be more predictive than normalized overlap ratios;
 - The absence of “Very Hard” test edges (0%) is unexpected given the four-year time span and the generally dynamic nature of the VC ecosystem. This indicates that the major investors active in 2024 were already present in the 2021–2023 training period, suggesting a relatively stable core of active market participants despite surface-level market volatility;
 - Feature importance concentration shows that 88.4% of the Random Forest predictive signal derives from only two features (Jaccard and Common Neighbors). The remaining features—Degree Sum, Degree Difference, and Preferential Attachment—contribute minimally despite their theoretical relevance. This concentration suggests that local neighborhood overlap dominates other structural signals in this prediction task, and that feature engineering efforts may be more effective if focused on qualitatively different information (e.g., node attributes, temporal patterns) rather than additional topological variants.
 
@@ -438,9 +438,9 @@ Various unexpected results emerged from the analysis:
 6.1 Summary
 This project addresses the problem of predicting future co-investment relationships between Venture Capital funds, framed as a link prediction task in a co-investor network. A complete analytical pipeline is developed, encompassing data preprocessing, network construction, heuristic computation, machine learning model training, and rigorous evaluation with hard negative sampling.
 Key Findings: the experimental results yield several principal findings:
-- Graph-based heuristics outperform machine learning models: Common Neighbors achieves the highest PR-AUC (0.535), surpassing Logistic Regression (0.409) and Random Forest (0.395) by margins of 30.8% and 35.4%, respectively. This confirms that simple topological measures effectively capture structural signals predictive of co-investment formation;
-- All methods demonstrate meaningful predictive power: every evaluated approach exceeds the random baseline (PR-AUC = 0.170) by factors ranging from 2.26× to 3.15×, indicating that the co-investor network contains exploitable structure for relationship prediction;
-- Top-ranked predictions are highly reliable: Preferential Attachment achieves perfect Precision@100 (1.000), and Common Neighbors reaches 0.980, indicating that the highest-confidence predictions are almost always correct;
+- Graph-based heuristics outperform machine learning models: Common Neighbors achieves the highest PR-AUC (0.542), surpassing Logistic Regression (0.414) and Random Forest (0.404) by margins of 30.9% and 34.2%, respectively. This confirms that simple topological measures effectively capture structural signals predictive of co-investment formation;
+- All methods demonstrate meaningful predictive power: every evaluated approach exceeds the random baseline (PR-AUC = 0.170) by factors ranging from 2.27× to 3.19×, indicating that the co-investor network contains exploitable structure for relationship prediction;
+- Top-ranked predictions are highly reliable: Preferential Attachment achieves near-perfect Precision@100 (0.990), and Common Neighbors reaches 0.990, indicating that the highest-confidence predictions are almost always correct;
 - Feature importance is highly concentrated: Random Forest analysis shows that Jaccard Coefficient (51.0%) and Common Neighbors (37.4%) account for 88.4% of predictive signal, helping explain why ML models fail to improve upon individual heuristics;
 - Evaluation difficulty affects performance: the majority of test edges (58.8%) involve well-connected investors (degree > 10), partially explaining the high precision values observed.
 
@@ -451,18 +451,18 @@ Based on the experimental findings, the following recommendations are provided.
 ```
 |Use Case                         | Recommended Method | Rationale                                                    |
 |---------------------------------|--------------------|--------------------------------------------------------------|
-|        General prediction       |          CN        | Highest PR-AUC (0.535), best overall ranking quality         |
-| High-confidence recommendations |          PA        | Perfect Precision@100, ideal when only top predictions matter|
+|        General prediction       |          CN        | Highest PR-AUC (0.542), best overall ranking quality         |
+| High-confidence recommendations |          PA        | Ideal when only top predictions matter                       |
 |      Interpretable scoring      |          CN        | Scores directly represent shared connection counts           |
 |Resource-constrained environments|     CN or Jaccard  | O(d²) complexity, no training required                       |
-|      Ensemble applications      |   Voting Ensemble  | Best ML-based approach (PR-AUC=0.463), pools multiple signals|
+|      Ensemble applications      |   Voting Ensemble  | Best ML-based approach (PR-AUC=0.469), pools multiple signals|
 |   Feature importance analysis   |     Random Forest  | Provides interpretable feature contributions                 |
 
 ```
 
 Decision Framework:
 - If interpretability is paramount: Use Common Neighbors. The score directly represents the number of shared co-investors, which is immediately understandable to domain experts;
-- If only top-k predictions are used: Use Preferential Attachment. Its perfect Precision@100 ensures that recommended pairs are highly likely to be true positives;
+- If only top-k predictions are used: Use Preferential Attachment. Its near-perfect Precision@100 ensures that recommended pairs are highly likely to be true positives;
 - If computational resources are limited: Use heuristics (CN, Jaccard, PA). These require no training phase and can be computed on-demand for specific node pairs;
 - If integration with larger ML systems is required: Use Random Forest or Voting Ensemble. While underperforming heuristics, these models provide probability outputs suitable for downstream integration;
 - If the goal is research or benchmarking: Evaluate multiple methods. Performance rankings may differ across datasets, and comprehensive comparison provides robust conclusions.
@@ -542,7 +542,7 @@ Predictive Link Modeling in VC Networks/
 │   ├── metrics_heatmap.png
 │   ├── pr_auc.png
 │   ├── precision_at_100.png
-│   ├── results_coinvestor_20251201_140730.json
+│   ├── results_coinvestor_20251217_085209.json
 │   └── top_50_predictions.txt
 └── scr/
     ├── __init__.py

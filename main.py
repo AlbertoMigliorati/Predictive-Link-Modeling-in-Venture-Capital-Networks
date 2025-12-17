@@ -2,6 +2,12 @@ import argparse
 import os
 import sys
 from datetime import datetime
+import random
+import numpy as np
+
+# Set global seeds for reproducibility
+random.seed(42)
+np.random.seed(42)
 
 # Add project root to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
