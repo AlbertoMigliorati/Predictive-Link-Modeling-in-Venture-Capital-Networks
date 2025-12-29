@@ -49,7 +49,7 @@ The dataset contains **2,044 investment rounds** from 2021 to 2024, with informa
 
 1. Clone or download the project:
 ```bash
-cd Predictive Link Modeling in VC Networks
+cd Predictive-Link-Modeling-in-Venture-Capital-Networks
 ```
 
 2. Create and activate the Conda environment:

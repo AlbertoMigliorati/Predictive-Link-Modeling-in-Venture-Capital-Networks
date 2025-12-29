@@ -1,0 +1,45 @@
+{
+  "task": "coinvestor",
+  "cutoff_year": 2023,
+  "timestamp": "20251218_142542",
+  "metrics": {
+    "common_neighbors": {
+      "precision@50": 1.0,
+      "precision@100": 0.99,
+      "pr_auc": 0.5417704572141763
+    },
+    "jaccard": {
+      "precision@50": 0.56,
+      "precision@100": 0.57,
+      "pr_auc": 0.38597242854862146
+    },
+    "preferential_attachment": {
+      "precision@50": 1.0,
+      "precision@100": 0.99,
+      "pr_auc": 0.5144916228970626
+    },
+    "logistic_regression": {
+      "precision@50": 0.84,
+      "precision@100": 0.81,
+      "pr_auc": 0.41404283415921905
+    },
+    "random_forest": {
+      "precision@50": 0.82,
+      "precision@100": 0.76,
+      "pr_auc": 0.4039761483471596
+    },
+    "voting": {
+      "precision@50": 0.9,
+      "precision@100": 0.83,
+      "pr_auc": 0.4690468351337125
+    },
+    "random_baseline": {
+      "precision@50": 0.24,
+      "precision@100": 0.2,
+      "pr_auc": 0.16995100249093242
+    }
+  },
+  "num_test_edges": 2392,
+  "train_graph_nodes": 4527,
+  "train_graph_edges": 38356
+}

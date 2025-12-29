@@ -4,10 +4,10 @@ Top 50 Predictions (common_neighbors)
  1. andreessen horowitz <-> index
     Score: 34.0000
 
- 2. craft <-> insight
+ 2. alumni <-> tiger global management
     Score: 34.0000
 
- 3. alumni <-> tiger global management
+ 3. craft <-> insight
     Score: 34.0000
 
  4. felicis <-> y combinator
@@ -16,10 +16,10 @@ Top 50 Predictions (common_neighbors)
  5. andreessen horowitz <-> craft
     Score: 28.0000
 
- 6. redpoint <-> sequoia
+ 6. alumni <-> bessemer venture
     Score: 28.0000
 
- 7. alumni <-> bessemer venture
+ 7. redpoint <-> sequoia
     Score: 28.0000
 
  8. andreessen horowitz <-> first round
@@ -28,10 +28,10 @@ Top 50 Predictions (common_neighbors)
  9. accel <-> alumni
     Score: 25.0000
 
-10. lightspeed venture <-> sequoia
+10. jack altman <-> redpoint
     Score: 24.0000
 
-11. jack altman <-> redpoint
+11. lightspeed venture <-> sequoia
     Score: 24.0000
 
 12. accel <-> lightspeed venture
@@ -40,61 +40,61 @@ Top 50 Predictions (common_neighbors)
 13. first round <-> sequoia
     Score: 23.0000
 
-14. nat friedman <-> sequoia
+14. alumni <-> coatue
     Score: 23.0000
 
-15. alumni <-> coatue
+15. nat friedman <-> sequoia
     Score: 23.0000
 
 16. alumni <-> lightspeed venture
     Score: 22.0000
 
-17. gokul rajaram <-> sv angel
+17. felicis <-> sequoia
     Score: 21.0000
 
-18. felicis <-> sequoia
+18. gokul rajaram <-> sv angel
     Score: 21.0000
 
-19. alumni <-> gokul rajaram
+19. felicis <-> wing venture
     Score: 20.0000
 
-20. andreessen horowitz <-> benchmark
+20. abstract <-> sequoia
     Score: 20.0000
 
-21. alumni <-> redpoint
+21. alumni <-> gokul rajaram
     Score: 20.0000
 
-22. abstract <-> sequoia
+22. michael ovitz <-> y combinator
     Score: 20.0000
 
-23. felicis <-> wing venture
+23. alumni <-> intel
     Score: 20.0000
 
-24. michael ovitz <-> y combinator
+24. alumni <-> redpoint
     Score: 20.0000
 
-25. alumni <-> intel
+25. gokul rajaram <-> menlo
     Score: 20.0000
 
-26. gokul rajaram <-> menlo
+26. andreessen horowitz <-> benchmark
     Score: 20.0000
 
-27. menlo <-> sv angel
+27. 8vc <-> craft
     Score: 19.0000
 
-28. bain <-> bessemer venture
+28. menlo <-> sv angel
     Score: 19.0000
 
-29. 8vc <-> craft
+29. bain <-> bessemer venture
     Score: 19.0000
 
-30. boxgroup <-> sequoia
+30. guillermo rauch <-> menlo
     Score: 18.0000
 
 31. greycroft <-> salesforce
     Score: 18.0000
 
-32. guillermo rauch <-> menlo
+32. boxgroup <-> sequoia
     Score: 18.0000
 
 33. amplify <-> menlo
@@ -109,45 +109,45 @@ Top 50 Predictions (common_neighbors)
 36. dylan field <-> jack altman
     Score: 17.0000
 
-37. bessemer venture <-> lightspeed venture
+37. first round <-> guillermo rauch
     Score: 16.0000
 
-38. index <-> salesforce
+38. general catalyst <-> index
     Score: 16.0000
 
-39. andreessen horowitz <-> greycroft
+39. bessemer venture <-> lightspeed venture
     Score: 16.0000
 
-40. first round <-> guillermo rauch
+40. index <-> salesforce
     Score: 16.0000
 
-41. general catalyst <-> index
+41. andreessen horowitz <-> greycroft
     Score: 16.0000
 
 42. angel collective opportunity fund <-> lightspeed venture
     Score: 15.0000
 
-43. kleiner perkins <-> sv angel
+43. signalfire <-> y combinator
     Score: 15.0000
 
-44. lux <-> sv angel
+44. alumni <-> fj labs
     Score: 15.0000
 
-45. accel <-> crv
+45. coatue <-> new enterprise associates
     Score: 15.0000
 
-46. signalfire <-> y combinator
+46. accel <-> crv
     Score: 15.0000
 
-47. coatue <-> new enterprise associates
+47. lux <-> sv angel
     Score: 15.0000
 
 48. bessemer venture <-> general catalyst
     Score: 15.0000
 
-49. alumni <-> fj labs
+49. kleiner perkins <-> sv angel
     Score: 15.0000
 
-50. amplify <-> dylan field
+50. benchmark <-> gokul rajaram
     Score: 14.0000
 

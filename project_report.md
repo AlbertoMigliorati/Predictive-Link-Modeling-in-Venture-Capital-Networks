@@ -556,7 +556,7 @@ Predictive Link Modeling in VC Networks/
 
 ```bash
 git clone https://github.com/AlbertoMigliorati/Predictive-Link-Modeling-in-Venture-Capital-Networks.git
-cd Predictive Link Modeling in VC Networks
+cd Predictive-Link-Modeling-in-Venture-Capital-Networks
 conda env create -f environment.yml
 conda activate vc-link-prediction
 ```

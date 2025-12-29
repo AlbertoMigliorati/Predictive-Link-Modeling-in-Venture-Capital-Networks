@@ -144,9 +144,7 @@ def compute_heuristics(graph, test_edges):
     return heuristic_scores
 
 
-# =============================================================================
 # FEATURE EXTRACTION
-# =============================================================================
 
 def extract_features(graph, u, v):
     """
@@ -175,9 +173,7 @@ def extract_features(graph, u, v):
     return [cn, jc, pa, deg_sum, deg_diff]
 
 
-# =============================================================================
 # NEGATIVE SAMPLING
-# =============================================================================
 
 def generate_negative_samples(graph, num_samples, existing_edges=None):
     """
@@ -233,9 +229,7 @@ def generate_negative_samples(graph, num_samples, existing_edges=None):
     return negative_samples
 
 
-# =============================================================================
 # ML MODELS
-# =============================================================================
 
 def train_ml_models(graph, test_edges, heuristic_scores):
     """
