@@ -123,17 +123,17 @@ python main.py
 
 | Method | P@50 | P@100 | PR-AUC |
 |--------|------|-------|--------|
-| Common Neighbors | 1.000 | 0.980 | **0.535** |
-| Preferential Attachment | 1.000 | 1.000 | 0.503 |
-| Voting Ensemble | 0.860 | 0.780 | 0.463 |
-| Logistic Regression | 0.800 | 0.770 | 0.409 |
-| Random Forest | 0.620 | 0.690 | 0.395 |
-| Jaccard | 0.560 | 0.590 | 0.385 |
+| Common Neighbors | 1.000 | 0.990 | **0.542** |
+| Preferential Attachment | 1.000 | 0.990 | 0.514 |
+| Voting Ensemble | 0.900 | 0.830 | 0.469 |
+| Logistic Regression | 0.840 | 0.810 | 0.414 |
+| Random Forest | 0.820 | 0.760 | 0.404 |
+| Jaccard | 0.560 | 0.570 | 0.386 |
 | Random Baseline | 0.240 | 0.200 | 0.170 |
 
 ### Key Findings
 
-1. **Simple heuristics outperform ML models**: Common Neighbors achieves the highest PR-AUC (0.535), beating both Logistic Regression (0.409) and Random Forest (0.395).
+1. **Simple heuristics outperform ML models**: Common Neighbors achieves the highest PR-AUC (0.542), beating both Logistic Regression (0.414) and Random Forest (0.404).
 
 2. **High Precision@100 for top methods**: The top-100 predictions from CN and PA are nearly all correct, indicating reliable identification of likely co-investments.
 
